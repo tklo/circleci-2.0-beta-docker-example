@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: echo 'export VER=0.1' >> $BASH_ENV
+      # - run: echo 'export VER=0.1' >> $BASH_ENV
       - run:
           name: Install dependencies
           command: |
@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=app -t tklo/app:${VAR}.${CIRCLE_BUILD_NUM} .
+            docker build --cache-from=app -t tklo/app:${VER}.${CIRCLE_BUILD_NUM} .
       - run:
           name: Save Docker image layer cache
           command: |
@@ -55,4 +55,4 @@ jobs:
           name: Push application Docker image
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push tklo/app:${VAR}.${CIRCLE_BUILD_NUM}
+            docker push tklo/app:${VER}.${CIRCLE_BUILD_NUM}
