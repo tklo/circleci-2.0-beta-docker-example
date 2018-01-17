@@ -4,11 +4,12 @@ jobs:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
-    environment:
-      - VER: "0.1"
+    # environment:
+    #   - VER: "0.1"
     steps:
       - checkout
       - setup_remote_docker
+      - run: echo 'export VER=0.1' >> $BASH_ENV
       - run:
           name: Install dependencies
           command: |
