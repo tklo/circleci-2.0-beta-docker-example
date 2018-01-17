@@ -4,6 +4,8 @@ jobs:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
+    environment:
+      - TAG: 0.1.$CIRCLE_BUILD_NUM
     steps:
       - checkout
       - setup_remote_docker
@@ -50,6 +52,5 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push tklo/app:$TAG
