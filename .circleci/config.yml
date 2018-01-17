@@ -9,7 +9,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      # - run: echo 'export VER=0.1' >> $BASH_ENV
       - run:
           name: Install dependencies
           command: |
